@@ -2,6 +2,8 @@ using namespace std;
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
+#include <numeric>
 
 void printArr(const vector<unsigned char> arr){
     for(size_t i=0; i<arr.size(); i++){
@@ -13,6 +15,20 @@ void extractBits(const vector<unsigned char>& A, vector<unsigned char>& D, int k
     D.clear();
     for(size_t i=0; i<A.size(); i++){
         D.push_back((A[i] >> k) & 1);
+    }
+}
+
+void binaryRadixSort(vector<unsigned char>& A){
+    vector<unsigned char> D(A.size());
+
+    for(int k=0; k<8; k++){
+        extractBits(A, D, k);
+        std::vector<int> indices(A.size());
+        iota(indices.begin(), indices.end(), 0);
+
+        stable_sort(indices.begin(), indices.end(), [&](int i, int j){
+            return D[i] < D[j];
+        });
     }
 }
 
@@ -43,7 +59,5 @@ int main(int argc, char* argv[]){
     inputFile.close();
 
     vector<unsigned char> D;
-    extractBits(A, D, 0);
-    printArr(D);
     
 }
