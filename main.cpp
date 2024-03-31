@@ -1,12 +1,18 @@
+using namespace std;
 #include <iostream>
 #include <fstream>
 #include <vector>
 
-using namespace std;
+void printArr(const vector<unsigned char> arr){
+    for(size_t i=0; i<arr.size(); i++){
+        cout << static_cast<int>(arr[i]) << " ";
+    }
+}
 
-void printA(const vector<unsigned char>& A){
+void extractBits(const vector<unsigned char>& A, vector<unsigned char>& D, int k){
+    D.clear();
     for(size_t i=0; i<A.size(); i++){
-        cout << static_cast<int>(A[i]) << " ";
+        D.push_back((A[i] >> k) & 1);
     }
 }
 
@@ -36,4 +42,8 @@ int main(int argc, char* argv[]){
     }
     inputFile.close();
 
+    vector<unsigned char> D;
+    extractBits(A, D, 0);
+    printArr(D);
+    
 }
