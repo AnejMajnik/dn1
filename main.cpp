@@ -21,7 +21,13 @@ int main(int argc, char* argv[]){
 
     int number;
     vector<unsigned char> A;
-
+    while(inputFile >> number){
+        if(number < 0 || number > 255){
+            cerr << "Število izven ranga";
+            return 1;
+        }
+        A.push_back(static_cast<unsigned char>(number));
+    }
     inputFile.close();
 
 }
