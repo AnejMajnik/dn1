@@ -4,6 +4,12 @@
 
 using namespace std;
 
+void printA(const vector<unsigned char>& A){
+    for(size_t i=0; i<A.size(); i++){
+        cout << static_cast<int>(A[i]) << " ";
+    }
+}
+
 int main(int argc, char* argv[]){
     //preveri če je pravo število podanih argumentov
     if(argc != 2){
