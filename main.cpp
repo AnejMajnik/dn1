@@ -43,6 +43,24 @@ void binaryRadixSort(vector<unsigned char>& A){
     }
 }
 
+void writeToFile(vector<unsigned char>& A){
+    string outputFileName = "output.txt";
+    ofstream outputFile(outputFileName);
+    if(outputFile.is_open()){
+        for(int i=0; i<A.size(); i++){
+            outputFile << static_cast<int>(A[i]);
+            if(i < A.size() - 1){
+                outputFile << " ";
+            }
+        }
+        outputFile.close();
+        cout << "Urejena števila zapisana v: " << outputFileName << endl;
+    }
+    else{
+        cerr << "Napaka pri odpiranju izhodne datoteke: " << outputFileName << endl;
+    }
+}
+
 int main(int argc, char* argv[]){
     //preveri če je pravo število podanih argumentov
     if(argc != 2){
@@ -67,9 +85,11 @@ int main(int argc, char* argv[]){
         }
         A.push_back(static_cast<unsigned char>(number));
     }
-    inputFile.close();
 
+    inputFile.close();
+    
     binaryRadixSort(A);
+    writeToFile(A);
 
     return 0;
 }
