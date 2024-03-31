@@ -1,9 +1,18 @@
-using namespace std;
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <algorithm>
 #include <numeric>
+
+using namespace std;
+
+void rearrangeA(vector<unsigned char>& A, const vector<int>& indices){
+    vector<unsigned char> temp(A.size());
+    for(int i=0; i<A.size(); i++){
+        temp[i] = A[indices[i]];
+    }
+    A = temp;
+}
 
 void printArr(const vector<unsigned char> arr){
     for(size_t i=0; i<arr.size(); i++){
@@ -23,12 +32,14 @@ void binaryRadixSort(vector<unsigned char>& A){
 
     for(int k=0; k<8; k++){
         extractBits(A, D, k);
-        std::vector<int> indices(A.size());
+        vector<int> indices(A.size());
         iota(indices.begin(), indices.end(), 0);
 
         stable_sort(indices.begin(), indices.end(), [&](int i, int j){
             return D[i] < D[j];
         });
+
+        rearrangeA(A, indices);
     }
 }
 
@@ -58,6 +69,7 @@ int main(int argc, char* argv[]){
     }
     inputFile.close();
 
-    vector<unsigned char> D;
-    
+    binaryRadixSort(A);
+
+    return 0;
 }
