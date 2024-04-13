@@ -10,9 +10,6 @@ jobs:
   # preveri če obstaja test
   check_test_scripts:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        compiler: [g++, gcc]
     steps:
       - uses: actions/checkout@v4
       - name: Check if test scripts exist
@@ -32,6 +29,9 @@ jobs:
   prepare_and_run_tests:
     needs: [check_test_scripts]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [g++, gcc]
     if: always() && success()
     steps:
       - name: Check for error file
