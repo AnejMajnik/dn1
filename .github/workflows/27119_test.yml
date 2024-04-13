@@ -10,6 +10,9 @@ jobs:
   # preveri če obstaja test
   check_test_scripts:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [g++, gcc]
     steps:
       - uses: actions/checkout@v4
       - name: Check if test scripts exist
@@ -45,6 +48,6 @@ jobs:
 
       - name: Compile and run tests
         run: |
-          g++ test_main.cpp main.cpp -o test
+          ${{ matrix.compiler }} test_main.cpp main.cpp -o test
           ./test
         working-directory: ${{ github.workspace }}
