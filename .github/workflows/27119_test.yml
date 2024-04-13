@@ -31,7 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        compiler: [g++, gcc]
+        # matrix za verzijo compilerja
+        compiler: [c++11, c++17]
     if: always() && success()
     steps:
       - name: Check for error file
@@ -48,6 +49,6 @@ jobs:
 
       - name: Compile and run tests
         run: |
-          ${{ matrix.compiler }} test_main.cpp main.cpp -o test
+          g++ -std=${{ matrix.compiler }} test_main.cpp main.cpp -o test
           ./test
         working-directory: ${{ github.workspace }}
