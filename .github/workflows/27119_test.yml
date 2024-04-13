@@ -8,9 +8,10 @@ jobs:
   check_test_scripts:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout
       - name: Check if test scripts exist
         run: |
-          if [ ! -f test_main.cpp ]; then
+          if [ ! -f "test_main.cpp" ]; then
             echo "Test script test_main.cpp not found." > error.txt
             exit 1
           fi
