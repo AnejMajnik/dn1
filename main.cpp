@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include "main.h"
 
 using namespace std;
 
@@ -84,21 +85,4 @@ vector<unsigned char> readNumbersFromFile(std::string& filename){
 
     inputFile.close();
     return A;
-}
-
-int main(int argc, char* argv[]){
-    //preveri če je pravo število podanih argumentov
-    if(argc != 2){
-        cerr << "Uporaba: " << argv[0] << " <input_file>" << endl;
-        return 1;
-    }
-    //vzamem ime datoteke iz argumenta
-    string filename = argv[1];
-
-    vector<unsigned char> A = readNumbersFromFile(filename);
-
-    binaryRadixSort(A);
-    writeToFile(A);
-
-    return 0;
 }
