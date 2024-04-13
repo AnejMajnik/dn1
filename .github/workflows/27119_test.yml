@@ -1,8 +1,10 @@
 name: 27119_test
 
+#kdaj se izvede
 on:
   push:
     branches: [master]
+
 # seznam poslov
 jobs:
   # preveri če obstaja test
