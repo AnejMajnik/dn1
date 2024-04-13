@@ -2,8 +2,7 @@ name: 27119_test
 
 on:
   push:
-    branches: [ master ]
-
+    branches: [master]
 
 jobs:
   check_test_scripts:
@@ -11,7 +10,7 @@ jobs:
     steps:
       - name: Check if test scripts exist
         run: |
-          if [ ! -f ../.tests/test_main.cpp ]; then
+          if [ ! -f ../../.tests/test_main.cpp ]; then
             echo "Test script test_main.cpp not found." > error.txt
             exit 1
           fi
