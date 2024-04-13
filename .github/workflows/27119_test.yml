@@ -36,6 +36,9 @@ jobs:
             echo "Error file not found. Proceeding with tests."
           fi
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up enviornment
         run: |
           sudo apt-get install g++
