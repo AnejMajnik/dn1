@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
-#include "main.h"
+#include "../catch.hpp"
+#include "../main.h"
 
 TEST_CASE("BinaryRadixSort") {
     // Define test data
