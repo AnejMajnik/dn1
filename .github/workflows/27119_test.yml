@@ -25,13 +25,14 @@ jobs:
   prepare_and_run_tests:
     needs: [check_test_scripts]
     runs-on: ubuntu-latest
-    if: failure()
+    if: always() && success()
     steps:
       - name: Check for error file
         run: |
           if [ -f "error.txt" ]; then
-            echo "Error file found."
-            cat error.txt
+            echo "Error file found. Proceeding with tests."
+          else
+            echo "Error file not found. Exiting."
             exit 1
           fi
 
