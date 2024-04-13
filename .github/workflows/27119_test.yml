@@ -30,13 +30,17 @@ jobs:
       - name: Check for error file
         run: |
           if [ -f "error.txt" ]; then
-            echo "Error file found. Proceeding with tests."
+            echo "Error file found. Exiting."
             exit 1
           else
-            echo "Error file not found. Exiting."
+            echo "Error file not found. Proceeding with tests."
           fi
 
+      - name: Set up enviornment
+        run: |
+          sudo apt-get install g++
       - name: Compile and run tests
         run: |
           g++ test_main.cpp main.cpp -o test
           ./test
+        working-directory: ${{ github.workspace }}
