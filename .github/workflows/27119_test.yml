@@ -3,8 +3,9 @@ name: 27119_test
 on:
   push:
     branches: [master]
-
+# seznam poslov
 jobs:
+  # preveri če obstaja test
   check_test_scripts:
     runs-on: ubuntu-latest
     steps:
@@ -22,6 +23,7 @@ jobs:
           name: error-log
           path: error.txt
 
+  #preveri, če obstaja error.txt. Če je bila v prejšnjem poslu napaka obstaja, drugače ne.
   prepare_and_run_tests:
     needs: [check_test_scripts]
     runs-on: ubuntu-latest
@@ -39,9 +41,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up enviornment
-        run: |
-          sudo apt-get install g++
       - name: Compile and run tests
         run: |
           g++ test_main.cpp main.cpp -o test
