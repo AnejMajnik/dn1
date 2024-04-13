@@ -15,3 +15,27 @@ jobs:
             echo "Test script test_main.cpp not found." > error.txt
             exit 1
           fi
+      - name: Save error.txt as artifact
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: error-log
+          path: error.txt
+
+  prepare_and_run_tests:
+    needs: [check_test_scripts]
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: Check for error file
+        run: |
+          if [ -f "error.txt" ]; then
+            echo "Error file found."
+            cat error.txt
+            exit 1
+          fi
+
+      - name: Compile and run tests
+        run: |
+          g++ test_main.cpp main.cpp -o test
+          ./test
