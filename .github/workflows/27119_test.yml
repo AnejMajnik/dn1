@@ -31,9 +31,9 @@ jobs:
         run: |
           if [ -f "error.txt" ]; then
             echo "Error file found. Proceeding with tests."
+            exit 1
           else
             echo "Error file not found. Exiting."
-            exit 1
           fi
 
       - name: Compile and run tests
