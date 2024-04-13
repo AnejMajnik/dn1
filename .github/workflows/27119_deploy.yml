@@ -26,3 +26,13 @@ jobs:
           id: datum
           #run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
           run: echo "date=$(date +'%Y-%m-%d--%M-%S')" >> "$GITHUB_ENV"
+
+        - name: Zgradi docker sliko
+          run: |
+            echo ${{ steps.datum.outputs.date }}
+            echo "docker build . --file Dockerfile --tag $REPONAME:$date"
+            docker build . --file Dockerfile --tag $REPONAME:$date
+
+        - name: Potisni docker sliko
+          run: |
+            docker push $REPONAME:$date
