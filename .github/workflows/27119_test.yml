@@ -8,7 +8,7 @@ jobs:
   check_test_scripts:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v2
       - name: Check if test scripts exist
         run: |
           if [ ! -f "test_main.cpp" ]; then
