@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Date: $date"
+
 # Prijava v docker
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
