@@ -19,6 +19,23 @@ jobs:
         - name: Checkout repozitorija
           uses: actions/checkout@v4
 
+        #- name: Prijava v docker
+          #run: |
+            #docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+        #- name: Trenutni čas
+          #id: datum
+          #run: echo "date=$(date +'%Y-%m-%d--%M-%S')" >> "$GITHUB_ENV"
+
+        #- name: Zgradi docker sliko
+          #run: |
+            #echo ${{ steps.datum.outputs.date }}
+            #echo "docker build . --file Dockerfile --tag $REPONAME:$date"
+            #docker build . --file Dockerfile --tag $REPONAME:$date
+        #- name: Potisni docker sliko
+          #run: |
+            #docker push $REPONAME:$date
+
         - name: Spremeni dovoljenja za skripto
           run: chmod +x zapakiraj_27119.sh
         
