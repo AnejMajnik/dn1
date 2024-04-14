@@ -1,5 +1,10 @@
 name: 27119_deploy
-    
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  REPONAME: ${{ secrets.REPO_NAME }}
+
 # izvede se le, če se je 27119_test.yml izvedel uspešno
 on:
   workflow_run:
@@ -19,7 +24,4 @@ jobs:
         
         - name: Izvedi skripto za pakiranje
           run: ./zapakiraj_27119.sh
-          env:
-            DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-            DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-            REPONAME: ${{ secrets.REPO_NAME }}
+          
