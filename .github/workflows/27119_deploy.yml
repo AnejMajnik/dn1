@@ -36,11 +36,14 @@ jobs:
           #run: |
             #docker push $REPONAME:$date
 
-        - name: Spremeni dovoljenja za skripto
+        - name: Spremeni dovoljenja za skripto zapakiraj
           run: chmod +x zapakiraj_27119.sh
         
         - name: Izvedi skripto za pakiranje
           run: ./zapakiraj_27119.sh
+
+        - name: Spremeni dovoljenja za skripto zazeni
+          run: chmod +x zazeni_27119.sh
 
         - name: Izvedi skripto za pull
           run: ./zazeni_27119.sh
