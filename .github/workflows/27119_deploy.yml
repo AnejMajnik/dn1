@@ -41,4 +41,7 @@ jobs:
         
         - name: Izvedi skripto za pakiranje
           run: ./zapakiraj_27119.sh
+
+        - name: Izvedi skripto za pull
+          run: ./zazeni_27119.sh
           
