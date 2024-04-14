@@ -1,10 +1,12 @@
 name: 27119_deploy
 
+# secrets iz githuba
 env:
     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     REPONAME: ${{ secrets.REPO_NAME }}
-    
+     
+# izvede se le, če se je 27119_test.yml izvedel uspešno
 on:
   workflow_run:
     workflows: ["27119_test"]
@@ -24,7 +26,6 @@ jobs:
 
         - name: Trenutni čas
           id: datum
-          #run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
           run: echo "date=$(date +'%Y-%m-%d--%M-%S')" >> "$GITHUB_ENV"
 
         - name: Zgradi docker sliko

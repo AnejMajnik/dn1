@@ -48,6 +48,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Compile and run tests
+      # izvede se 2x, enkrat za vsako verzijo c++ v matrix
         run: |
           g++ -std=${{ matrix.compiler }} test_main.cpp main.cpp -o test
           ./test
