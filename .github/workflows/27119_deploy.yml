@@ -14,10 +14,6 @@ jobs:
         - name: Checkout repozitorija
           uses: actions/checkout@v4
 
-        - name: Prijava v Docker
-          run: |
-            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-
         - name: Izvedi skripto za pakiranje
           run: ./zapakiraj_27119.sh
           env:
