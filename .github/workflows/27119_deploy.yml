@@ -14,6 +14,9 @@ jobs:
         - name: Checkout repozitorija
           uses: actions/checkout@v4
 
+        - name: Spremeni dovoljenja za skripto
+          run: chmod +x zapakiraj_27119.sh
+        
         - name: Izvedi skripto za pakiranje
           run: ./zapakiraj_27119.sh
           env:
